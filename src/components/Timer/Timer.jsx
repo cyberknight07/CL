@@ -10,7 +10,7 @@ const Timer = () => {
         const [time, setTime] = useState(0);
         // Lap data Array
 
-        const [data, setData] = useState([]);
+        const [laps, setLaps] = useState([]);
         
        
         const handleChange = (e) => {
@@ -43,10 +43,8 @@ const Timer = () => {
     
         const handleLap = (e) => {
             e.preventDefault();
-            console.log(formattedTime(time));
             // data.push(formattedTime(time)); //Never mutate state directly, React will not re-render the UI as Reference never changes.
-            setData(prev => [...prev, formattedTime(time)]);
-            console.log(data);
+            setLaps(prev => [...prev, formattedTime(time)]);
         }
 
         const formattedTime = (timeInSeconds) => {
@@ -79,7 +77,7 @@ const Timer = () => {
             if(startFlag && time>0){
                 timer = setInterval(() => { 
                     setTime((prev) => prev-1);
-                }, 100)
+                }, 1000)
             }
             return () => clearInterval(timer);
         }, [startFlag, time]);
@@ -115,9 +113,10 @@ const Timer = () => {
             </div>
          <hr/>
         <div className='laps'>
+            <h2>Laps</h2>
             <ul>
-      {data.map((item, index) => (
-        <li key={index}>{item}</li> // Always add a unique key
+      {laps.map((item, index) => (
+        <li key={index}><div className='lapCard'>{item}</div></li> // Always add a unique key
       ))}
     </ul>
         </div>

@@ -74,5 +74,13 @@ span{
 }
 
 hr{
+    width: 1200px;
+}
+
+.lapCard{
     width: 1000px;
+    padding: 8px 16px;
+    background-color: aliceblue;
+    border-radius: 8px;
+    margin: 8px;   
 }
